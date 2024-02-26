@@ -58,22 +58,24 @@ export default function Body() {
     }
   };
 
-  return apiData ? (
-    apiData.map((pokemonData) => {
-      return (
-        <div
-          key={pokemonData.name}
-          className="p-2 m-2"
-          onClick={() => clickHandler(pokemonData)}
-        >
-          <p>
-            {pokemonData.name.charAt(0).toUpperCase() +
-              pokemonData.name.slice(1)}
-          </p>
-          <img src={pokemonData.image}></img>
-        </div>
-      );
-    })
+  return apiData.length ? (
+    <div className="grid items-top grid-cols-2 md:grid-cols-5 lg:grid-cols-8  justify-items-center">
+      {apiData.map((pokemonData) => {
+        return (
+          <div
+            key={pokemonData.name}
+            className="p-2 m-2 flex flex-col"
+            onClick={() => clickHandler(pokemonData)}
+          >
+            <p>
+              {pokemonData.name.charAt(0).toUpperCase() +
+                pokemonData.name.slice(1)}
+            </p>
+            <img src={pokemonData.image} className="mt-auto"></img>
+          </div>
+        );
+      })}
+    </div>
   ) : (
     <div>
       <p className="p-20 text-center">Fetching data...</p>
